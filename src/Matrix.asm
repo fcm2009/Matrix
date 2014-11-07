@@ -5,16 +5,18 @@
 .globl main
 .text
 	main:
-		la $a0, arr
-		li $a1, 3
-		li $a2, 3
-		li $a3, 4
+		la $a0, arr		#address of the array
+		li $a1, 3		#number of rows
+		li $a2, 3		#number of columns
+		li $a3, 4		#size of elemnt
+		
 		mul $t1, $a1, $a2	#calculate number of elemnt of the array
 		mul $t1, $t1, $a3	#calculate size of the array
 		add $t1, $a0, $t1	#calculate address of the last element in the array
-		li $t2, 1
 		
-		addi $sp, $sp, -8
+		li $t2, 1		#array content type
+		
+		addi $sp, $sp, -8	#increase stack size by 8 byte
 		sw $t1, 0($sp)		#stor address of the last element in the array in stack
 		sw $t2, 4($sp)		#stor type of content of the array in stack
 		jal PrintA
