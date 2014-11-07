@@ -26,7 +26,7 @@
 ##################################################################################################
 #Input:	$a0 = pointer on the array,		$a1 = number of rows
 #	$a2 = number of columns,		$a3 = size of elemnt in byte
-#	0($sp) = last elemnt in the array,	4($sp) = type of the array's content
+#	0($sp) = last elemnt in the array,	4($sp) = type of the array's content(1 = int, 11 = char) 
 #output:array is printed on the screen
 ##################################################################################################
 	PrintA:
@@ -42,6 +42,11 @@
 			move $v0, $t3			#prepare to print		
 			lw $a0, 0($t0)			#load elemnt to print
 			syscall				#print
+			
+			li $v0, 11			#prepare to print		
+			li $a0, '\t'			#load '\t'
+			syscall				#print tap
+			
 			addi $t0, $t0, 4		#increment p to next elemnt
 			addi $t2, $t2, 1		#increment i by one
 			beq $t2, $a1, print_line	#if i = size of row: print new line, else continue	
